@@ -6,6 +6,7 @@ Challenge BeCode "create a mini-chat"
 
 [Aboute Node](./NodeJs.md)
 [Install Node](./InstalleNode.md)
+
 <hr>
 
 ## Objectif
@@ -18,4 +19,3 @@ We do a standar chat we have created a balsamique view
 ## Technologies Used
 
 - NodeJs
-- MySQL
