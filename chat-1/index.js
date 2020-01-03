@@ -1,16 +1,23 @@
 const app = require('express')();
 const http = require('http').createServer(app);
 const port = 8080;
-app.get('/', function(req, res){
-  res.send('<h1>Hello world</h1>');
-});
-
-http.listen(port, function(){
-  console.log('Serveur tourne sur http://localhost:'+port);
-});
+const io = require('socket.io')(http);
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
   });
+
+  io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+    socket.on('disconnect', function(){
+        io.emit('chat message', msg);
+    });
+  });
+  });
+http.listen(port, function(){
+  console.log('Serveur tourne sur http://localhost:'+port);
+});
 
 
 
