@@ -1,0 +1,26 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NodeJs chat</title>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="username" placeholder="Votre pseudonyme"><br />
+            <textarea id="message" placeholder="Votre message"></textarea><br />
+            <input type="submit" id="submit">
+        </form>
+
+        <div id="response"></div>
+
+        <ul id="messages" style="list-style:none;"></ul>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="client.js"></script>
+    </body>
+    
+</html>
+
