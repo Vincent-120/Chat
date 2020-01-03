@@ -1,0 +1,8 @@
+body {
+    font: 13px Helvetica, Arial;
+    transition: all 0.5s;
+}
+
+form {
+    border: 3px black solid;
+}
