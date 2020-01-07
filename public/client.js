@@ -3,48 +3,49 @@ let socket = io();
 
 // Connexion d'un utilisateur
 //  Uniquement si le username n'est pas vide et n'existe pas encore
-$('#login form').submit(function (e) {
+document.getElementById('but').addEventListener('click',(e) => {
   e.preventDefault();
   let user = {
-    username: $('#login input').val().trim()
+    username: document.getElementById('u').value.trim()
   };
+
   if (user.username.length > 0) { // Si le champ de connexion n'est pas vide
     socket.emit('user-login', user, function (success) {
       if (success) {
-        $('body').removeAttr('id'); // Cache formulaire de connexion
-        $('#chat input').focus(); // Focus sur le champ du message
+        document.getElementById('logged-out').removeAttribute('id');// Cache formulaire de connexion
+        document.getElementById('m').focus(); // Focus sur le champ du message
       }
     });
   }
 });
 
 // Envoi d'un message
-$('#chat form').submit(function (e) {
+document.getElementById('send').addEventListener("click", (e) =>{
   e.preventDefault();
   let message = {
-    text: $('#m').val()
+    text: document.getElementById('m').value
   };
-  $('#m').val('');
+  document.getElementById('m').value = '';
   if (message.text.trim().length !== 0) { // Gestion message vide
     socket.emit('chat-message', message);
   }
-  $('#chat input').focus(); // Focus sur le champ du message
+  document.getElementById('m').focus(); // Focus sur le champ du message
 });
 
 //  Réception d'un message
 socket.on('chat-message', function (message) {
-  $('#messages').append($('<li>').html('<span class="username">' + message.username + '</span> ' + message.text));
+  document.getElementById('messages').innerHTML+='<li><span class="username">' + message.username + '</span> ' + message.text;
   scrollToBottom();
 });
 
 // Réception d'un message de service
 socket.on('service-message', function (message) {
-  $('#messages').append($('<li class="' + message.type + '">').html('<span class="info">information</span> ' + message.text));
+  document.getElementById('messages').innerHTML+='<li class="' + message.type + '">' + '<span class="info">information</span> ' + message.text;
   scrollToBottom();
 });
 
 // Scroll vers le bas de page si l'utilisateur n'est pas remonté pour lire d'anciens messages
-function scrollToBottom() {
+let scrollToBottom = () =>{
   if ($(window).scrollTop() + $(window).height() + 2 * $('#messages li').last().outerHeight() >= $(document).height()) {
     $("html, body").animate({
       scrollTop: $(document).height()
