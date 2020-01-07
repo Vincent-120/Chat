@@ -45,7 +45,7 @@ socket.on('service-message', function (message) {
 });
 
 // Scroll vers le bas de page si l'utilisateur n'est pas remonté pour lire d'anciens messages
-let scrollToBottom = () =>{
+let scrollToBottom = () => {
   if ($(window).scrollTop() + $(window).height() + 2 * $('#messages li').last().outerHeight() >= $(document).height()) {
     $("html, body").animate({
       scrollTop: $(document).height()
@@ -55,7 +55,7 @@ let scrollToBottom = () =>{
 
 // Connexion d'un nouvel utilisateur
 socket.on('user-login', function (user) {
-  $('#users').append($('<li class="' + user.username + ' new">').html(user.username + '<span class="typing">typing</span>'));
+  document.getElementById('users').innerHTML +='<li class="' + user.username + ' new">' + user.username + '<span class="typing">typing</span>';
   setTimeout(function () {
     $('#users li.new').removeClass('new');
   }, 1000);
@@ -64,14 +64,14 @@ socket.on('user-login', function (user) {
 // Déconnexion d'un utilisateur
 socket.on('user-logout', function (user) {
   let selector = '#users li.' + user.username;
-  $(selector).remove();
+  selector.remove();
 });
 
 // Détection saisie utilisateur
 let typingTimer;
 let isTyping = false;
 
-$('#m').keypress(function () {
+document.getElementById('m').addEventListener("beforeinput", () => {
   clearTimeout(typingTimer);
   if (!isTyping) {
     socket.emit('start-typing');
@@ -79,7 +79,7 @@ $('#m').keypress(function () {
   }
 });
 
-$('#m').keyup(function () {
+document.getElementById('m').addEventListener('keyup', () => {
   clearTimeout(typingTimer);
   typingTimer = setTimeout(function () {
     if (isTyping) {
@@ -91,8 +91,8 @@ $('#m').keyup(function () {
 
 //  Gestion saisie des autres utilisateurs
 socket.on('update-typing', function (typingUsers) {
-  $('#users li span.typing').hide();
+  document.querySelector('.typing').style.display = 'none';
   for (i = 0; i < typingUsers.length; i++) {
-    $('#users li.' + typingUsers[i].username + ' span.typing').show();
+    document.querySelector('#users li.' + typingUsers[i].username + ' span.typing').style.display = "block";
   }
 });
