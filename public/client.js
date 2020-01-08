@@ -11,6 +11,7 @@ document.getElementById('log').addEventListener('click',(e) => {
 
   if(user.username.length > 0) { // Si le champ de connexion n'est pas vide
     if (!user.username.match(/^[0-9a-zA-Z]+$/)) {
+      document.getElementById('pseudo').style.borderColor = "red";
     }else{
     socket.emit('user-login', user, function (success) {
       if (success) {
