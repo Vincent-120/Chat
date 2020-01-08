@@ -15,7 +15,7 @@ section#chat form {
     padding: 3px;
     position: fixed;
     bottom: 0;
-    width: 81%;
+    width: 81vw;
     height: 50px;
 }
 section#chat form input {
@@ -162,3 +162,10 @@ section#chat #users li span.typing {
     display: none;
 }
 
+@media only screen and (max-width: 386px){
+    section#chat #messages {
+        min-width: 80%;
+     }
+    
+    
+}
