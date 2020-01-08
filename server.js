@@ -96,7 +96,8 @@ io.on('connection', function (socket) {
       // Emission de 'user-login' et appel du callback
       io.emit('user-login', loggedUser);
       callback(true);
-    } else {
+    } 
+    else {
       callback(false);
     }
   });

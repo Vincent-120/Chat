@@ -3,33 +3,33 @@ let socket = io();
 
 // Connexion d'un utilisateur
 //  Uniquement si le username n'est pas vide et n'existe pas encore
-document.getElementById('but').addEventListener('click',(e) => {
+document.getElementById('log').addEventListener('click',(e) => {
   e.preventDefault();
   let user = {
-    username: document.getElementById('u').value.trim()
+    username: document.getElementById('pseudo').value.trim()
   };
 
-  if (user.username.length > 0) { // Si le champ de connexion n'est pas vide
+  if(user.username.length > 0) { // Si le champ de connexion n'est pas vide
     socket.emit('user-login', user, function (success) {
       if (success) {
         document.getElementById('logged-out').removeAttribute('id');// Cache formulaire de connexion
-        document.getElementById('m').focus(); // Focus sur le champ du message
+        document.getElementById('msg').focus(); // Focus sur le champ du message
       }
     });
   }
 });
 
 // Envoi d'un message
-document.getElementById('send').addEventListener("click", (e) =>{
+document.getElementById('envoyer').addEventListener("click", (e) =>{
   e.preventDefault();
   let message = {
-    text: document.getElementById('m').value
+    text: document.getElementById('msg').value
   };
-  document.getElementById('m').value = '';
-  if (message.text.trim().length !== 0) { // Gestion message vide
+  document.getElementById('msg').value = '';
+  if(message.text.trim().length !== 0){ // Gestion message vide
     socket.emit('chat-message', message);
   }
-  document.getElementById('m').focus(); // Focus sur le champ du message
+  document.getElementById('msg').focus(); // Focus sur le champ du message
 });
 
 //  Réception d'un message
@@ -71,7 +71,7 @@ socket.on('user-logout', function (user) {
 let typingTimer;
 let isTyping = false;
 
-document.getElementById('m').addEventListener("beforeinput", () => {
+document.getElementById('msg').addEventListener("beforeinput", () => {
   clearTimeout(typingTimer);
   if (!isTyping) {
     socket.emit('start-typing');
@@ -79,7 +79,7 @@ document.getElementById('m').addEventListener("beforeinput", () => {
   }
 });
 
-document.getElementById('m').addEventListener('keyup', () => {
+document.getElementById('msg').addEventListener('keyup', () => {
   clearTimeout(typingTimer);
   typingTimer = setTimeout(function () {
     if (isTyping) {
