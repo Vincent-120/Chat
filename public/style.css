@@ -6,6 +6,8 @@
 body {
     font: 13px Helvetica, Arial;
     transition: all 0.5s;
+    background-color: rgb(37, 35, 35);
+    color: white;
 }
 
 section#chat form {
@@ -13,7 +15,7 @@ section#chat form {
     padding: 3px;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 81%;
     height: 50px;
 }
 section#chat form input {
@@ -46,7 +48,7 @@ section#chat #messages li {
     padding: 5px 10px;
 }
 section#chat #messages li:nth-child(odd) {
-    background: #eee;
+    background: black;
 }
 
 body#logged-out {
@@ -149,7 +151,7 @@ section#chat #users li {
     margin: 10px 10px;
     border-radius: 5px;
     border: 1px solid #e67e22;
-    color: black;
+    color: white;
     transition: all 0.5s;
 }
 
@@ -159,3 +161,4 @@ section#chat #users li span.typing {
     color: #eee;
     display: none;
 }
+

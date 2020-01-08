@@ -1,4 +1,4 @@
-// Inisialisation de socket.io coté client
+// Inisialisation de socket.io coté client.
 let socket = io();
 
 // Connexion d'un utilisateur
