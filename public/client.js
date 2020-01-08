@@ -10,12 +10,15 @@ document.getElementById('log').addEventListener('click',(e) => {
   };
 
   if(user.username.length > 0) { // Si le champ de connexion n'est pas vide
+    if (!user.username.match(/^[0-9a-zA-Z]+$/)) {
+    }else{
     socket.emit('user-login', user, function (success) {
       if (success) {
         document.getElementById('logged-out').removeAttribute('id');// Cache formulaire de connexion
         document.getElementById('msg').focus(); // Focus sur le champ du message
       }
     });
+  }
   }
 });
 
@@ -96,3 +99,4 @@ socket.on('update-typing', function (typingUsers) {
     document.querySelector('#users li.' + typingUsers[i].username + ' span.typing').style.display = "block";
   }
 });
+
