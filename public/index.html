@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <title>Chat en node.js</title>
+  <style>
+  </style>
+</head>
+
+<body id="logged-out">
+  <!-- Chat  -->
+  <section id="chat">
+    <ul id="messages"></ul>
+    </ul>
+    <ul id="users">
+    </ul>
+    <form action="">
+      <input id="msg" autocomplete="off" />
+      <button id="envoyer">Envoyer</button>
+    </form>
+  </section>
+
+  <!-- login -->
+  <section id="login">
+    <form action="">
+      <label for="user">Username</label>
+      <input id="pseudo" autocomplete="off" autofocus />
+      <p>
+        <button id="log">Login</button>
+      </p>
+    </form>
+  </section>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+
+</html>
