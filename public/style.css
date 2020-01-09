@@ -15,7 +15,7 @@ section#chat form {
     padding: 3px;
     position: fixed;
     bottom: 0;
-    width: 80.2vw;
+    width: 80.9vw;
     height: 50px;
 }
 section#chat form input {
@@ -175,6 +175,6 @@ section#chat #users li span.typing {
      }
 
     section#chat form {
-        width: 81vw;
+        width: 80vw;
     }
 }
