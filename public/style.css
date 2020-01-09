@@ -15,7 +15,7 @@ section#chat form {
     padding: 3px;
     position: fixed;
     bottom: 0;
-    width: 80.9vw;
+    width: 100%;
     height: 50px;
 }
 section#chat form input {
@@ -42,7 +42,7 @@ section#chat #messages {
     padding: 0;
     font-size: 15px;
     display: inline-block;
-    width: calc(100% - 250px);
+    width: calc(100% - 1%);
 }
 section#chat #messages li {
     padding: 5px 10px;
@@ -140,7 +140,6 @@ section#chat #users {
     list-style-type: none;
     height: 100%;
     padding-bottom: 50px;
-    border-left: 3px solid #eee;
 }
 section#chat #users li.new {
     background: #e67e22;
@@ -150,7 +149,8 @@ section#chat #users li {
     padding: 6px 10px;
     margin: 10px 10px;
     border-radius: 5px;
-    border: 1px solid #e67e22;
+    border: 1px solid green;
+    background-color:rgb(46, 102, 8) ;
     color: white;
     transition: all 0.5s;
 }
@@ -160,6 +160,65 @@ section#chat #users li span.typing {
     font-style: italic;
     color: #eee;
     display: none;
+}
+
+#volet {
+	width: 250px;
+	padding: 10px;
+    position: fixed;
+    left: -270px; top: 55px;	
+    -webkit-transition: all .5s ease-in;
+	transition: all .5s ease-in;
+}
+#volet a.ouvrir {
+	padding: 10px 25px;
+	background: #555;
+	color: #fff;
+    text-decoration: none;
+    position: absolute;
+	right: -88px;
+    top: 150px;
+    -ms-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+    border-radius: 0 0 8px 8px;
+}
+
+#volet:target {
+	left: 0;
+}
+
+#volet a.ouvrir,
+#volet a.fermer {
+    padding: 10px 25px;
+	background: #555;
+	color: #fff;
+    text-decoration: none;
+    position: absolute;
+	right: -88px;
+    top: 150px;
+    -ms-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+    border-radius: 0 0 8px 8px;
+	
+}
+
+#volet a.fermer {
+	display: none;
+}
+
+#volet_clos:target #volet {
+	left: -270px;
+}
+
+#volet:target a.ouvrir {
+	display: none;
+}
+#volet:target a.fermer {
+	display: block;
 }
 
 @media only screen and (max-width: 386px){
@@ -175,6 +234,6 @@ section#chat #users li span.typing {
      }
 
     section#chat form {
-        width: 80vw;
+        width: 100vw;
     }
 }
