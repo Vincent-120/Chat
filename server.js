@@ -24,9 +24,8 @@ let messages = [];
 let typingUsers = [];
 
 io.on('connection', function (socket) {
-  //  Utilisateur connecté à la socket
+  //  Variable de l'utilisateur connecté à la socket
   let loggedUser;
-  console.log('a user connected');
 
   // Emission d'un événement "user-login" pour chaque utilisateur connecté
   for (i = 0; i < users.length; i++) {
@@ -45,7 +44,6 @@ io.on('connection', function (socket) {
   // Déconnexion d'un utilisateur : broadcast d'un 'service-message'
   socket.on('disconnect', function () {
     if (loggedUser !== undefined) {
-      console.log('user disconnected : ' + loggedUser.username);
       let serviceMessage = {
         text: 'User "' + loggedUser.username + '" disconnected',
         type: 'logout'
@@ -80,6 +78,38 @@ io.on('connection', function (socket) {
     if (user !== undefined && userIndex === -1) { // S'il est bien nouveau
       // Sauvegarde de l'utilisateur et ajout à la liste des connectés
       loggedUser = user;
+// let dataBase = () =>{
+//   let mysql      = require('mysql');
+//   console.log('Get connection ...');
+//   let connection = mysql.createConnection({
+//     host     : 'localhost',
+//     user     : 'user',
+//     password : 'user',
+//     database : 'chat'
+//   });
+//   connection.connect();
+//   console.log("Connected!");
+//   return connection
+  
+// }
+
+
+// let insertUser = () => {
+//   let db = dataBase()
+
+//   let data = [loggedUser.username]
+
+//   db.query('INSERT INTO CHAT SET pseudo=?',data,(err, user, field) => {
+//     if(err)throw err
+//   })
+// }
+
+// let gettUser = () => {
+//   let db = dataBase()
+// }
+
+// dataBase()
+// insertUser()
       users.push(loggedUser);
       // Envoi des messages de service
       let userServiceMessage = {
@@ -110,7 +140,6 @@ io.on('connection', function (socket) {
     if (messages.length > 150) {
       messages.splice(0, 1);
     }
-    console.log('Message de : ' + loggedUser.username);
   });
   // Réception de l'événement 'start-typing'
   // L'utilisateur commence à saisir son message
@@ -123,7 +152,7 @@ io.on('connection', function (socket) {
   });
   // Réception de l'événement 'stop-typing'
   // L'utilisateur a arrêter de saisir son message
-  socket.on('stop-typing', function () {
+  socket.on('stop-typing', function() {
     let typingUserIndex = typingUsers.indexOf(loggedUser);
     if (typingUserIndex !== -1) {
       typingUsers.splice(typingUserIndex, 1);
@@ -131,3 +160,49 @@ io.on('connection', function (socket) {
     io.emit('update-typing', typingUsers);
   });
 });
+
+
+
+
+
+// let dataBase = () =>{
+//   let mysql      = require('mysql');
+//   console.log('Get connection ...');
+//   let connection = mysql.createConnection({
+//     host     : 'localhost',
+//     user     : 'user',
+//     password : 'user',
+//     database : 'chat'
+//   });
+//   connection.connect();
+//   console.log("Connected!");
+//   return connection
+  
+// }
+
+// insertUser()
+
+// let insertUser = () => {
+//   let db = dataBase()
+
+  // POST
+
+  // let pseudo = users;
+  // let msg = messages;
+
+  // let crypto = require('crypto')
+  // const hash = crypto.createHmac('sha256', pseudo).update('I love cupcakes').digest('hex');
+
+//   let data = [users.length, messages.length]
+
+//   db.query('INSERT INTO CHAT SET pseudo=?, message=?',data,(err, user, field) => {
+//     if(err)throw err
+//   })
+// }
+
+// let gettUser = () => {
+//   let db = dataBase()
+// }
+
+// dataBase()
+// insertUser()

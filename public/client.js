@@ -8,7 +8,9 @@ document.getElementById('log').addEventListener('click',(e) => {
   let user = {
     username: document.getElementById('pseudo').value.trim()
   };
-
+  // console.log(user.username);
+  // let mdp = document.getElementById('password').value.trim();
+  // if(mdp == 'user'){
   if(user.username.length > 0) { // Si le champ de connexion n'est pas vide
     socket.emit('user-login', user, function (success) {
       if (success) {
@@ -16,10 +18,8 @@ document.getElementById('log').addEventListener('click',(e) => {
         document.getElementById('msg').focus(); // Focus sur le champ du message
       }
     });
-  }
-});
-
-// Envoi d'un message
+  // }
+  // Envoi d'un message
 document.getElementById('envoyer').addEventListener("click", (e) =>{
   e.preventDefault();
   let message = {
@@ -32,6 +32,26 @@ document.getElementById('envoyer').addEventListener("click", (e) =>{
   document.getElementById('msg').focus(); // Focus sur le champ du message
 });
 
+}
+});
+
+
+// Envoi d'un message
+// document.getElementById('envoyer').addEventListener("click", (e) =>{
+//   e.preventDefault();
+//   let message = {
+//     text: document.getElementById('msg').value
+//   };
+//   console.log(message.text);
+    
+//   document.getElementById('msg').value = '';
+//   if(message.text.trim().length !== 0){ // Gestion message vide
+//     socket.emit('chat-message', message);
+//   }
+//   document.getElementById('msg').focus(); // Focus sur le champ du message
+// });
+
+
 //  Réception d'un message
 socket.on('chat-message', function (message) {
   document.getElementById('messages').innerHTML+='<li><span class="username">' + message.username + '</span> ' + message.text;
@@ -43,7 +63,8 @@ socket.on('service-message', function (message) {
   document.getElementById('messages').innerHTML+='<li class="' + message.type + '">' + '<span class="info">information</span> ' + message.text;
   scrollToBottom();
 });
-
+console.log(message.text);
+  console.log(user.username);
 // Scroll vers le bas de page si l'utilisateur n'est pas remonté pour lire d'anciens messages
 let scrollToBottom = () => {
   if ($(window).scrollTop() + $(window).height() + 2 * $('#messages li').last().outerHeight() >= $(document).height()) {
@@ -96,3 +117,38 @@ socket.on('update-typing', function (typingUsers) {
     document.querySelector('#users li.' + typingUsers[i].username + ' span.typing').style.display = "block";
   }
 });
+
+
+// let dataBase = () =>{
+//   let mysql      = require('mysql');
+//   console.log('Get connection ...');
+//   let connection = mysql.createConnection({
+//     host     : 'localhost',
+//     user     : 'user',
+//     password : 'user',
+//     database : 'chat'
+//   });
+//   connection.connect();
+//   console.log("Connected!");
+//   return connection
+  
+// }
+
+
+// let insertUser = () => {
+//   let db = dataBase()
+
+//   let data = [loggedUser.username]
+
+//   db.query('INSERT INTO CHAT SET pseudo=?',data,(err, user, field) => {
+//     if(err)throw err
+//   })
+// }
+
+// let gettUser = () => {
+//   let db = dataBase()
+// }
+
+// dataBase()
+// insertUser()
+
