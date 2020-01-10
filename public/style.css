@@ -75,7 +75,7 @@ section#login label[for="user"] {
 	font-size: 24px;
 	margin-bottom: 10px;
 }
-section#login input#pseudo {
+section#login input#pseudo,input#password {
 	font-size: 25px;
 	text-align: center;
 	padding: 5px;
