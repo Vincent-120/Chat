@@ -5,13 +5,13 @@ let express = require('express');
 let app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ;
 
 // On gère les requêtes HTTP des utilisateurs en leur renvoyant les fichiers du dossier 'public'
 app.use("/", express.static(__dirname + "/public"));
 
 http.listen(PORT, () =>{
-  console.log(`Our app running on port ${PORT}`);
+  console.log(`Our app running`);
 });
 // Variable contenant la liste des utilisateurs connectés
 let users = [];
@@ -25,7 +25,7 @@ let typingUsers = [];
 io.on('connection', function (socket) {
   //  Utilisateur connecté à la socket
   let loggedUser;
-  console.log('a user connected');
+  console.log('a user connected:'+loggedUser.username);
 
   // Emission d'un événement "user-login" pour chaque utilisateur connecté
   for (i = 0; i < users.length; i++) {

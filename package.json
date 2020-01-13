@@ -6,8 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines":{
+    "node": "13.x",
+    "npm": "6.x"
+  },
   "keywords": [
-    "exemple",
+    "chatisnot",
     "heroku"
   ],
   "author": "issam",
@@ -15,9 +19,5 @@
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
-  },
-  "engines":{
-    "node": "13.x",
-    "npm": "6.x"
   }
 }
