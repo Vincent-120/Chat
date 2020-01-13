@@ -3,14 +3,14 @@
 // puis on initialise socket.io
 let express = require('express');
 let app = express();
-let http = require('http').Server(app);
+let https = require('https').Server(app);
 let io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 
 // On gère les requêtes HTTP des utilisateurs en leur renvoyant les fichiers du dossier 'public'
 app.use("/", express.static(__dirname + "/public"));
 
-http.listen(PORT, () =>{
+https.listen(PORT, () =>{
   console.log(`Our app running`);
 });
 // Variable contenant la liste des utilisateurs connectés
