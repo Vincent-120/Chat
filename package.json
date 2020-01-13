@@ -1,8 +1,8 @@
 {
-  "name": "node.js-test",
+  "name": "node.js-chat",
   "version": "1.0.0",
-  "description": "test",
-  "main": "server.js",
+  "description": "Chat create for BeCode",
+  "main": "./server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
