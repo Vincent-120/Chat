@@ -5,7 +5,7 @@ let express = require('express');
 let app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 3000;
 
 // On gère les requêtes HTTP des utilisateurs en leur renvoyant les fichiers du dossier 'public'
 app.use("/", express.static(__dirname + "/public"));
