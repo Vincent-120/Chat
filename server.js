@@ -5,15 +5,14 @@ let express = require('express');
 let app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
+const PORT = process.env.PORT || 3000;
 
 // On gère les requêtes HTTP des utilisateurs en leur renvoyant les fichiers du dossier 'public'
 app.use("/", express.static(__dirname + "/public"));
 
-// On lance le serveur en écoutant les connexions arrivant sur le port 3001
-http.listen(3001, function () {
-  console.log('Server is listening on *:3001');
+http.listen(PORT, () =>{
+  console.log(`Our app running on port ${PORT}`);
 });
-
 // Variable contenant la liste des utilisateurs connectés
 let users = [];
 
