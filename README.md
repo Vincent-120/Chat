@@ -9,13 +9,18 @@ Challenge BeCode "create a mini-chat"
 
 <hr>
 
-## Objectif
-
-We do a standar chat we have created a balsamique view 
-
-![Balsamique schema](assets/minichat.png)
-<hr>
-
 ## Technologies Used
 
 - NodeJs
+
+<hr>
+
+## Contributors
+
+[Belinda Schepers](https://github.com/belindaschepers)
+
+[Issam Boumarouane](https://github.com/Boumarouane)
+
+[Alessandro Denys](https://github.com/alessdenys)
+
+Vincent Vissers
