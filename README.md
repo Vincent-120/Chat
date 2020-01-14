@@ -6,7 +6,6 @@ Challenge BeCode "create a mini-chat"
 
 [Aboute Node](./NodeJs.md)
 
-[Install Node](./InstalleNode.md)
 
 <hr>
 
